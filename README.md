@@ -1,7 +1,7 @@
 Shopify test
 ============
 
-This is the job test if you wish to be a front-end developer at Blazar Capital
+This is the job test if you wish to be a front-end developer at Mercive
 
 
 Contents
