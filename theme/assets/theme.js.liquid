@@ -1,1 +1,6 @@
-
+document.querySelectorAll(".addToCart").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    let productId = e.srcElement.dataset.id;
+    document.querySelector(`.productForm[data-productid='${productId}']`).submit();
+  });
+});

@@ -1,9 +1,9 @@
 /* Imports */
-@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Lato:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Lato:wght@400;700&display=swap");
 
 /* Fonts */
-$font-header: Cardo, 'Helvetica Neue', Helvetica, sans-serif;
-$font-body: Lato, 'Helvetica Neue', Helvetica, sans-serif;
+$font-header: Cardo, "Helvetica Neue", Helvetica, sans-serif;
+$font-body: Lato, "Helvetica Neue", Helvetica, sans-serif;
 
 /* Colours */
 $colour-primary: #2e3b47;
@@ -15,7 +15,8 @@ $colour-white: #fff;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -32,21 +33,29 @@ body {
 }
 
 /* Typography */
-a, a:active, a:hover, a:visited {
+a,
+a:active,
+a:hover,
+a:visited {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $font-header;
   font-weight: normal;
   line-height: 1.25;
   color: $colour-primary;
   display: inline-block;
   margin: 0 0 10px;
-  width: 100%;
 }
 
-img, picture {
+img,
+picture {
   display: inline-block;
   vertical-align: middle;
   max-width: 100%;
@@ -55,7 +64,8 @@ img, picture {
 }
 
 /* Containers */
-.main {}
+.main {
+}
 
 .container {
   position: relative;
@@ -114,10 +124,86 @@ img, picture {
 }
 
 /* Collection hero */
-.collectionHero {}
+.collectionHero {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  h1,
+  img {
+    grid-area: 1/1;
+    font-size: 5rem;
+    color: $colour-white;
+
+    @media (max-width: 768px) {
+      font-size: 3rem;
+    }
+  }
+}
 
 /* Product List */
-.productList {}
+.productsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  padding: 6rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  .pagination {
+    grid-column: 1 / -1;
+    justify-self: center;
+    span a {
+      color: $colour-primary;
+      text-decoration: none;
+    }
+    span.current {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+  }
+  @media (max-width: 768px) {
+    padding: 3rem 2rem;
+  }
+}
 
 /* Product Card */
-.productCard {}
+.productCard {
+  .productImage {
+    display: grid;
+    img {
+      grid-area: 1/1;
+    }
+    .addToCart {
+      cursor: pointer;
+      width: 2rem;
+      height: 2rem;
+      background-color: $colour-white;
+      padding: 0.5rem;
+      margin: 0.5rem;
+      box-sizing: content-box;
+      justify-self: end;
+      align-self: end;
+      visibility: hidden;
+    }
+    &:hover .addToCart {
+      visibility: visible;
+    }
+    @media (max-width: 768px) {
+      .addToCart {
+        visibility: visible;
+      }
+    }
+  }
+  .productInfo {
+    div {
+      display: flex;
+      justify-content: space-between;
+      .productTitle,
+      p {
+        margin: 1rem 0;
+      }
+      .productTitle {
+        font-weight: bold;
+      }
+    }
+  }
+}

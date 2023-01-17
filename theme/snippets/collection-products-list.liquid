@@ -1,2 +1,42 @@
 {% comment %} Product list {% endcomment %}
-<section class="productsList section"></section>
+
+<section class="productsList section">
+  {% paginate collection.products by 20 %}
+    {% for product in collections['all-watch-straps'].products %}
+      {% assign strapColor = product.title | split: "-" | slice: 1 %}
+      {% assign strapSize = product.title | split: "-" | slice: 2 %}
+      <div class="productCard">
+        <div class="productImage">
+          <img src="{{ product.images[0] | img_url: '' }}" alt="{{product.images[0].alt}}" />
+          <img
+            class="addToCart"
+            src="{{ 'icon-shopping-cart.png' | asset_img_url }}"
+            alt="{{product.images[0].alt}}"
+            data-id="{{ product.id }}" />
+        </div>
+        <form
+          class="productForm"
+          action="/cart/add"
+          data-productid="{{ product.id }}"
+          method="post"
+          hidden>
+          <input
+            type="hidden"
+            name="id"
+            data-productid="{{ product.id }}"
+            class="productSelect"
+            value="{{ product.variants[0].id }}"
+            data-variant-title="{{ product.variants[0].title }}" />
+        </form>
+        <div class="productInfo">
+          <div>
+            <h3 class="productTitle">{{ product.title | split: "-" | first }}</h3>
+            <p>{{ product.price }} {{ shop.currency }}</p>
+          </div>
+          <i class="productSize">{{ strapColor }} — {{ strapSize }}</i>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="pagination">{{- paginate | default_pagination -}}</div>
+  {% endpaginate %}
+</section>
